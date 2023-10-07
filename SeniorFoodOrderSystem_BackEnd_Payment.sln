@@ -5,6 +5,8 @@ VisualStudioVersion = 25.0.1706.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SeniorFoodOrderSystem_BackEnd_Payment", "SeniorFoodOrderSystem_BackEnd_Payment\SeniorFoodOrderSystem_BackEnd_Payment.csproj", "{0629E845-447B-4CEC-8667-FA2520818816}"
 EndProject
+Project("{E53339B2-1760-4266-BCC7-CA923CBCF16C}") = "docker-compose", "docker-compose.dcproj", "{262ECE99-5B8B-479D-97EC-7DEE583A1477}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -15,6 +17,10 @@ Global
 		{0629E845-447B-4CEC-8667-FA2520818816}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{0629E845-447B-4CEC-8667-FA2520818816}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{0629E845-447B-4CEC-8667-FA2520818816}.Release|Any CPU.Build.0 = Release|Any CPU
+		{262ECE99-5B8B-479D-97EC-7DEE583A1477}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{262ECE99-5B8B-479D-97EC-7DEE583A1477}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{262ECE99-5B8B-479D-97EC-7DEE583A1477}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{262ECE99-5B8B-479D-97EC-7DEE583A1477}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

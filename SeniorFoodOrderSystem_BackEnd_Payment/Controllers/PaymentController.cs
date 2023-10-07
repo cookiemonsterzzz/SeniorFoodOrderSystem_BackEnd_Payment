@@ -1,4 +1,5 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using SeniorFoodOrderSystem_BackEnd_Payment.Dto;
 
 namespace SeniorFoodOrderSystem_BackEnd_Payment.Controllers
 {
@@ -13,9 +14,9 @@ namespace SeniorFoodOrderSystem_BackEnd_Payment.Controllers
         }
 
         [HttpPost("upsertPayment")]
-        public async Task<ActionResult> UpsertPayment(Guid orderId)
+        public async Task<ActionResult> UpsertPayment([FromBody] PaymentDto paymentDto)
         {
-            var order = _context.Orders.FirstOrDefault(x => x.Id == orderId);
+            var order = _context.Orders.FirstOrDefault(x => x.Id == paymentDto.orderId);
 
             if (order is null)
             {
@@ -28,13 +29,16 @@ namespace SeniorFoodOrderSystem_BackEnd_Payment.Controllers
                     Id = Guid.NewGuid(),
                     OrderId = order.Id,
                     Amount = order.Amount,
-                    PaymentStatus = "Pending",
+                    PaymentMode = paymentDto.paymentMode,
+                    PaymentStatus = "Paid",
                     DateTimeCreated = DateTimeOffset.UtcNow,
                     DateTimeUpdated = DateTimeOffset.UtcNow,
-                    Order = order
                 };
 
                 _context.Payments.Add(payment);
+
+                order.OrderStatus = "Paid";
+
                 await _context.SaveChangesAsync();
 
                 return Ok(payment);

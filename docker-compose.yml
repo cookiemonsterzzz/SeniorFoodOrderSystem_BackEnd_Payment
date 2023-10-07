@@ -1,0 +1,8 @@
+version: '3.4'
+
+services:
+  seniorfoodordersystem_backend_payment:
+    image: ${DOCKER_REGISTRY-}seniorfoodordersystembackendpayment
+    build:
+      context: .
+      dockerfile: SeniorFoodOrderSystem_BackEnd_Payment/Dockerfile

@@ -10,6 +10,7 @@
 using System;
 using System.Reflection;
 
+[assembly: Microsoft.Extensions.Configuration.UserSecrets.UserSecretsIdAttribute("41a6dd75-1a96-4d1b-8ac3-1ecc0ffd944b")]
 [assembly: System.Reflection.AssemblyCompanyAttribute("SeniorFoodOrderSystem_BackEnd_Payment")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]

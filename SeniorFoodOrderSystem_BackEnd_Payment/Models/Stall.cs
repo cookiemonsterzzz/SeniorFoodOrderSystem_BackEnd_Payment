@@ -20,4 +20,6 @@ public partial class Stall
     public virtual ICollection<Food> Foods { get; set; } = new List<Food>();
 
     public virtual ICollection<Order> Orders { get; set; } = new List<Order>();
+
+    public virtual ICollection<StallRating> StallRatings { get; set; } = new List<StallRating>();
 }

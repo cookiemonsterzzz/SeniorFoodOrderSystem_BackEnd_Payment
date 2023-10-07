@@ -27,6 +27,8 @@ public partial class SeniorFoodOrderSystemDatabaseContext : DbContext
 
     public virtual DbSet<Stall> Stalls { get; set; }
 
+    public virtual DbSet<StallRating> StallRatings { get; set; }
+
     public virtual DbSet<User> Users { get; set; }
 
     protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
@@ -161,6 +163,31 @@ public partial class SeniorFoodOrderSystemDatabaseContext : DbContext
             entity.Property(e => e.StallOwner)
                 .HasMaxLength(100)
                 .IsUnicode(false);
+        });
+
+        modelBuilder.Entity<StallRating>(entity =>
+        {
+            entity.ToTable("StallRating");
+
+            entity.Property(e => e.Id).HasDefaultValueSql("(newid())");
+            entity.Property(e => e.DateTimeCreated).HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.DateTimeUpdated).HasDefaultValueSql("(getdate())");
+            entity.Property(e => e.Review).HasMaxLength(1000);
+
+            entity.HasOne(d => d.Order).WithMany(p => p.StallRatings)
+                .HasForeignKey(d => d.OrderId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_StallRating_Order");
+
+            entity.HasOne(d => d.Stall).WithMany(p => p.StallRatings)
+                .HasForeignKey(d => d.StallId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_StallRating_Stall");
+
+            entity.HasOne(d => d.User).WithMany(p => p.StallRatings)
+                .HasForeignKey(d => d.UserId)
+                .OnDelete(DeleteBehavior.ClientSetNull)
+                .HasConstraintName("FK_StallRating_User");
         });
 
         modelBuilder.Entity<User>(entity =>

@@ -1,18 +1,26 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using Microsoft.EntityFrameworkCore;
+using SeniorFoodOrderSystem_BackEnd_Payment;
+
+var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 
 builder.Services.AddControllers();
-// Learn more about configuring Swagger/OpenAPI at https://aka.ms/aspnetcore/swashbuckle
-
+builder.Services.AddDbContext<SeniorFoodOrderSystemDatabaseContext>(
+    (options) => options.UseSqlServer("ConnectionStrings:DefaultConnection"));
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
+builder.Services.AddControllersWithViews()
+    .AddNewtonsoftJson(options =>
+    options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
+);
+
 builder.Services.AddCors(options =>
 {
     options.AddPolicy("AllowOrigins",
         builder =>
         {
-            builder.WithOrigins("http://localhost:3000")  // Replace with your frontend's domain
+            builder.AllowAnyOrigin()  // Replace with your frontend's domain
                 .AllowAnyHeader()
                 .AllowAnyMethod();
         });
